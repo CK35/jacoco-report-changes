@@ -168,20 +168,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>de.ck35.maven.plugins</groupId>
-                <artifactId>jacoco-report-changes</artifactId>
-                <version>0.7.4-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                       <id>report-changes</id>
-                       <goals>
-                           <goal>report-changes</goal>
-                       </goals>
-                       <phase>verify</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>3.1.0</version>
