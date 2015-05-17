@@ -9,6 +9,8 @@
 	<version>0.7.4-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
+    <name>JaCoCo report changes Maven plugin</name>
+    <description>This is an Apache Maven Plugin which allows the generation of coverage reports for your changed classes.</description>
 	<url>https://github.com/CK35/jacoco-report-changes</url>
     
     <developers>
@@ -17,6 +19,19 @@
             <email>chris-Ka@web.de</email>
         </developer>
     </developers>
+    
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git:git://github.com/CK35/jacoco-report-changes</connection>
+        <url>https://github.com/CK35/jacoco-report-changes</url>
+    </scm>
     
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
