@@ -1,4 +1,6 @@
 # jacoco-report-changes
+[![Build Status](https://travis-ci.org/CK35/jacoco-report-changes.svg?branch=master)](https://travis-ci.org/CK35/jacoco-report-changes)
+[![Coverage Status](https://coveralls.io/repos/CK35/jacoco-report-changes/badge.svg)](https://coveralls.io/r/CK35/jacoco-report-changes)
 
 This is an Apache Maven Plugin which allows the generation of coverage reports for your changed classes.
 This makes sense when you are working with feature branches and you need the coverage of only the changed
