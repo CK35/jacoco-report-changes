@@ -33,6 +33,7 @@
   </scm>
     
 	<properties>
+        <project.scm.id>github</project.scm.id>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
     
