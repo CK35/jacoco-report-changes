@@ -181,6 +181,7 @@ public class JacocoReportChangesMojo extends ReportMojo {
 	 * 
 	 * @param branchName The branch to compare and detect changes.
 	 * @return A list of changed files.
+	 * @throws MojoExecutionException If loading changes failed.
 	 */
 	public List<String> loadChangedFiles(String branchName) throws MojoExecutionException {
 		try {
