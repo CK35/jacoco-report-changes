@@ -29,7 +29,7 @@
     </licenses>
     
     <scm>
-        <developerConnection>scm:git:git://github.com/CK35/jacoco-report-changes.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/CK35/jacoco-report-changes.git</developerConnection>
         <url>https://github.com/CK35/jacoco-report-changes</url>
     </scm>
     
