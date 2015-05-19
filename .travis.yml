@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
   - oraclejdk7
 before_install:
-install:
+install: true
 before_script:
 script:
   - mvn clean install
