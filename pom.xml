@@ -4,7 +4,7 @@
 
 	<groupId>de.ck35.maven.plugins</groupId>
 	<artifactId>jacoco-report-changes</artifactId>
-	<version>0.7.4-SNAPSHOT</version>
+	<version>0.7.4.2</version>
 	<packaging>maven-plugin</packaging>
 
     <name>JaCoCo report changes Maven plugin</name>
@@ -29,7 +29,7 @@
     <scm>
         <developerConnection>scm:git:https://github.com/CK35/jacoco-report-changes.git</developerConnection>
         <url>https://github.com/CK35/jacoco-report-changes</url>
-      <tag>HEAD</tag>
+      <tag>jacoco-report-changes-0.7.4.2</tag>
   </scm>
     
 	<properties>
