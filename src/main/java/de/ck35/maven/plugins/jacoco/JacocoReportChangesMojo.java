@@ -60,6 +60,12 @@ public class JacocoReportChangesMojo extends ReportMojo {
 	@Parameter(property="jacoco.skip", defaultValue="false")
 	private boolean jacocoSkip;
 	
+	/**
+	 * @since 0.7.4.2
+	 */
+	@Parameter(property="skipGenerationWhenNoChangesFound", defaultValue="false")
+	private boolean skipGenerationWhenNoChangesFound;
+	
 	@Component MavenProject project;
 	@Component Renderer siteRenderer;
 	
@@ -130,6 +136,37 @@ public class JacocoReportChangesMojo extends ReportMojo {
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			throw new MojoExecutionException("Could not inject field: '" + fieldName + "!", e);
 		}
+	}
+	
+	@Override
+	public boolean canGenerateReport() {
+	    return canGenerateReport(super.canGenerateReport());
+	}
+	
+	/**
+	 * Determine if coverage report should be generated or not. If {@link #skipGenerationWhenNoChangesFound}
+	 * is <code>true</code> and no changes were found (maybe because of an error) the result is <code>false</code>.
+	 * If super class is not able to generate report this method will immediately  return <code>false</code>.
+	 * 
+	 * @param superCanGenerateReport If super class can generate report.
+	 * @return <code>true</code> if report should be generated.
+	 */
+	public boolean canGenerateReport(boolean superCanGenerateReport) {
+	    if(superCanGenerateReport && skipGenerationWhenNoChangesFound) {
+            try {
+                List<String> includes = loadIncludes();
+                if(includes.isEmpty()) {
+                    getLog().info("Skipping JaCoCo report changes execution because there are no changes.");
+                    return false;
+                } else {
+                    return true;
+                }
+            } catch (MojoExecutionException e) {
+                getLog().warn("Skipping JaCoCo report changes execution because changes could not be loaded!", e);
+                return false;
+            }
+        }
+	    return superCanGenerateReport;
 	}
 	
 	@Override
@@ -253,4 +290,10 @@ public class JacocoReportChangesMojo extends ReportMojo {
 	public void setJacocoSkip(boolean jacocoSkip) {
 		this.jacocoSkip = jacocoSkip;
 	}
+	public boolean isSkipGenerationWhenNoChangesFound() {
+        return skipGenerationWhenNoChangesFound;
+    }
+	public void setSkipGenerationWhenNoChangesFound(boolean skipGenerationWhenNoChangesFound) {
+        this.skipGenerationWhenNoChangesFound = skipGenerationWhenNoChangesFound;
+    }
 }

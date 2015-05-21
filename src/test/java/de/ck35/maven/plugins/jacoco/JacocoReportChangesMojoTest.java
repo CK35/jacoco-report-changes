@@ -2,7 +2,9 @@ package de.ck35.maven.plugins.jacoco;
 
 import static de.ck35.maven.plugins.jacoco.JacocoReportChangesMojo.CLASS_SUFFIX;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -171,6 +173,80 @@ public class JacocoReportChangesMojoTest {
 		assertEquals("jacoco-changes/index", mojo.getOutputName());
 		assertEquals("JaCoCo Changes Test", mojo.getName(null));
 		assertFalse(mojo.isJacocoSkip());
-		
 	}
+	
+	@Test
+	public void testCanGenerateReportReturnsFalseWhenSuperReturnsFalse() throws MojoExecutionException {
+	    final List<String> changedFiles = Arrays.asList("a", "b", "c");
+        JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+            public java.util.List<String> loadIncludes() throws MojoExecutionException {
+                return changedFiles;
+            };
+        };
+        mojo.setJacocoSkip(true);
+        mojo.injectDefaults();
+        assertFalse(mojo.canGenerateReport());
+	}
+	
+	@Test
+	public void testisSkipGenerationWhenNoChangesFoundReturnsFalseOnDefault() {
+	    assertFalse(new JacocoReportChangesMojo().isSkipGenerationWhenNoChangesFound());
+	}
+	
+	@Test
+	public void testCanGenerateReportWithChanges() {
+	    final List<String> changedFiles = Arrays.asList("a", "b", "c");
+	    JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+	        public java.util.List<String> loadIncludes() throws MojoExecutionException {
+	            return changedFiles;
+	        };
+	    };
+	    assertTrue(mojo.canGenerateReport(true));
+	}
+	
+	@Test
+    public void testCanGenerateReportWithChangesAndSkip() {
+        final List<String> changedFiles = Arrays.asList("a", "b", "c");
+        JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+            public java.util.List<String> loadIncludes() throws MojoExecutionException {
+                return changedFiles;
+            };
+        };
+        mojo.setSkipGenerationWhenNoChangesFound(true);
+        assertTrue(mojo.canGenerateReport(true));
+    }
+	
+	@Test
+    public void testCanGenerateReportWithLoadError() {
+        JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+            public java.util.List<String> loadIncludes() throws MojoExecutionException {
+                throw new MojoExecutionException("Test");
+            };
+        };
+        mojo.setSkipGenerationWhenNoChangesFound(true);
+        assertFalse(mojo.canGenerateReport(true));
+    }
+	
+	@Test
+    public void testCanGenerateReportTrueWithNoChanges() {
+        final List<String> changedFiles = Collections.emptyList();
+        JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+            public java.util.List<String> loadIncludes() throws MojoExecutionException {
+                return changedFiles;
+            };
+        };
+        assertTrue(mojo.canGenerateReport(true));
+    }
+	
+	@Test
+    public void testCanGenerateReportTrueWithNoChangesAndSkip() {
+        final List<String> changedFiles = Collections.emptyList();
+        JacocoReportChangesMojo mojo = new JacocoReportChangesMojo() {
+            public java.util.List<String> loadIncludes() throws MojoExecutionException {
+                return changedFiles;
+            };
+        };
+        mojo.setSkipGenerationWhenNoChangesFound(true);
+        assertFalse(mojo.canGenerateReport(true));
+    }
 }
