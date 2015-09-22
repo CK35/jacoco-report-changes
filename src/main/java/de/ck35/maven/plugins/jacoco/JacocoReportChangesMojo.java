@@ -259,7 +259,7 @@ public class JacocoReportChangesMojo extends ReportMojo {
 	 * @throws IOException If process creation failed.
 	 */
 	protected Process gitDiffProcess(String branchName) throws IOException {
-		return new ProcessBuilder(Arrays.asList("git", "diff", "--name-only", branchName)).start();
+		return new ProcessBuilder(Arrays.asList("git", "diff", "--name-only", branchName+"...")).start();
 	}
 	
 	@Override
