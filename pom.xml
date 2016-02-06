@@ -4,7 +4,7 @@
 
 	<groupId>de.ck35.maven.plugins</groupId>
 	<artifactId>jacoco-report-changes</artifactId>
-	<version>0.7.4-SNAPSHOT</version>
+	<version>0.7.5-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
     <name>JaCoCo report changes Maven plugin</name>
@@ -66,7 +66,7 @@
 		<dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.4.201502262128</version>
+            <version>0.7.5.201505241946</version>
 		</dependency>
 		<dependency>
             <groupId>org.apache.maven.doxia</groupId>
