@@ -14,7 +14,7 @@ Currently this plugin only works in conjunction with Git.
 &lt;plugin&gt;
     &lt;groupId&gt;de.ck35.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;jacoco-report-changes&lt;/artifactId&gt;
-    &lt;version&gt;0.7.4.2&lt;/version&gt;
+    &lt;version&gt;0.7.5&lt;/version&gt;
         &lt;executions&gt;
             &lt;execution&gt;
                 &lt;phase&gt;verify&lt;/phase&gt;
